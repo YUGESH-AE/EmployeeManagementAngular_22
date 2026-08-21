@@ -116,12 +116,12 @@
 
           <tbody>
 
-            @for (department of departments; track department.departmentId) {
+            @for (department of departments; track $index) {
 
               <tr>
 
                 <td class="text-center">
-                  {{department.departmentId}}
+                  {{ $index + 1 }}
                 </td>
 
                 <td>

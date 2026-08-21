@@ -39,12 +39,12 @@
 
           <tbody>
 
-            @for (employee of employees; track employee.employeeId) {
+            @for (employee of employees; track $index) {
 
               <tr>
 
                 <td class="text-center">
-                  {{ employee.employeeId }}
+                  {{ $index + 1 }}
                 </td>
 
                 <td>

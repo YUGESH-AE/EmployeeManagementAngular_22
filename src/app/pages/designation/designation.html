@@ -63,7 +63,7 @@
               </option>
 
 
-              @for (department of departments; track department.departmentId) {
+              @for (department of departments; track $index) {
 
                 <option
                   [ngValue]="department.departmentId"
@@ -144,13 +144,13 @@
 
             @for (
               designation of designations;
-              track designation.designationId
+              track $index
               ) {
 
               <tr>
 
                 <td>
-                  {{designation.designationId}}
+                  {{ $index + 1 }}
                 </td>
 
 
