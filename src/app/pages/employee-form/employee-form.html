@@ -1,0 +1,325 @@
+<div class="container-fluid employee-page">
+
+  <div class="card employee-card shadow">
+
+    <!-- ================= HEADER ================= -->
+    <div class="card-header employee-header">
+      Employee Management
+    </div>
+
+
+    <!-- ================= BODY ================= -->
+    <div class="card-body">
+
+      <form
+        [formGroup]="employeeForm"
+        (ngSubmit)="upsertEmployee()">
+
+
+        <!-- ================= ROW 1 ================= -->
+        <div class="row g-3">
+
+
+          <!-- NAME -->
+          <div class="col-md-4">
+
+            <label
+              for="name"
+              class="form-label">
+              Employee Name
+            </label>
+
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              placeholder="Enter employee name"
+              formControlName="name"
+            >
+
+          </div>
+
+
+          <!-- CONTACT -->
+          <div class="col-md-4">
+
+            <label
+              for="contactNo"
+              class="form-label">
+              Contact No
+            </label>
+
+            <input
+              type="text"
+              id="contactNo"
+              class="form-control"
+              placeholder="Enter contact number"
+              formControlName="contactNo"
+            >
+
+          </div>
+
+
+          <!-- EMAIL -->
+          <div class="col-md-4">
+
+            <label
+              for="email"
+              class="form-label">
+              Email
+            </label>
+
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              placeholder="Enter email"
+              formControlName="email"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= ROW 2 ================= -->
+        <div class="row g-3 mt-1">
+
+
+          <!-- ALTERNATE CONTACT -->
+          <div class="col-md-4">
+
+            <label
+              for="altContactNo"
+              class="form-label">
+              Alternate Contact No
+            </label>
+
+            <input
+              type="text"
+              id="altContactNo"
+              class="form-control"
+              placeholder="Enter alternate contact"
+              formControlName="altContactNo"
+            >
+
+          </div>
+
+
+          <!-- CITY -->
+          <div class="col-md-4">
+
+            <label
+              for="city"
+              class="form-label">
+              City
+            </label>
+
+            <input
+              type="text"
+              id="city"
+              class="form-control"
+              placeholder="Enter city"
+              formControlName="city"
+            >
+
+          </div>
+
+
+          <!-- STATE -->
+          <div class="col-md-4">
+
+            <label
+              for="state"
+              class="form-label">
+              State
+            </label>
+
+            <input
+              type="text"
+              id="state"
+              class="form-control"
+              placeholder="Enter state"
+              formControlName="state"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= ROW 3 ================= -->
+        <div class="row g-3 mt-1">
+
+
+          <!-- PIN CODE -->
+          <div class="col-md-4">
+
+            <label
+              for="pinCode"
+              class="form-label">
+              Pin Code
+            </label>
+
+            <input
+              type="text"
+              id="pinCode"
+              class="form-control"
+              placeholder="Enter pin code"
+              formControlName="pinCode"
+            >
+
+          </div>
+
+
+          <!-- DEPARTMENT -->
+          <div class="col-md-4">
+
+            <label
+              for="departmentId"
+              class="form-label">
+              Department
+            </label>
+
+            <select
+              id="departmentId"
+              class="form-select"
+              formControlName="departmentId">
+
+              <option [ngValue]="null">
+                Select Department
+              </option>
+
+              @for (department of departments; track department.departmentId) {
+
+                <option [ngValue]="department.departmentId">
+                  {{ department.departmentName }}
+                </option>
+
+              }
+
+            </select>
+
+          </div>
+
+
+          <!-- DESIGNATION -->
+          <div class="col-md-4">
+
+            <label
+              for="designationId"
+              class="form-label">
+              Designation
+            </label>
+
+            <select
+              id="designationId"
+              class="form-select"
+              formControlName="designationId">
+
+              <option [ngValue]="null">
+                Select Designation
+              </option>
+
+              @for (designation of designations; track designation.designationId) {
+
+                <option [ngValue]="designation.designationId">
+                  {{ designation.designationName }}
+                </option>
+
+              }
+
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= ROW 4 ================= -->
+        <div class="row g-3 mt-1">
+
+
+          <!-- ROLE -->
+          <div class="col-md-4">
+
+            <label
+              for="role"
+              class="form-label">
+              Role
+            </label>
+
+            <select
+              id="role"
+              class="form-select"
+              formControlName="role">
+
+              <option value="">
+                Select Role
+              </option>
+
+              <option value="ADMIN">
+                Admin
+              </option>
+
+              <option value="USER">
+                User
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- ADDRESS -->
+          <div class="col-md-8">
+
+            <label
+              for="address"
+              class="form-label">
+              Address
+            </label>
+
+            <textarea
+              id="address"
+              class="form-control"
+              rows="2"
+              placeholder="Enter address"
+              formControlName="address">
+            </textarea>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= BUTTONS ================= -->
+        <div class="employee-actions mt-4">
+
+          <button
+            type="submit"
+            class="btn btn-success">
+             {{save ? 'Save' : 'Update'}}
+          </button>
+
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="resetForm()">
+
+            Reset
+
+          </button>
+
+        </div>
+
+      </form>
+
+
+
+    </div>
+
+  </div>
+
+</div>

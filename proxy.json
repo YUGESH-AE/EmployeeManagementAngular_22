@@ -1,0 +1,23 @@
+{
+  "activeEnv": "render",
+  "envs": {
+    "render": {
+      "host": "https://employeemanagementjava-angular22.onrender.com"
+    },
+    "local": {
+      "host": "http://localhost:8082"
+    },
+    "dev": {
+      "host": "http://localhost:8080"
+    },
+    "qa": {
+      "host": "https://qa-api.example.com"
+    },
+    "uat": {
+      "host": "https://uat-api.example.com"
+    },
+    "prod": {
+      "host": "https://api.example.com"
+    }
+  }
+}

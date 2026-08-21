@@ -1,0 +1,218 @@
+<div class="container-fluid designation-page">
+
+  <div class="card designation-card shadow">
+
+    <!-- Header -->
+    <div class="card-header designation-header">
+      Designation Management
+    </div>
+
+
+    <!-- Form -->
+    <div class="card-body">
+
+      <form
+        [formGroup]="designationForm"
+        (ngSubmit)="upsertDesignation()"
+      >
+
+        <div class="row align-items-end g-3">
+
+          <!-- Designation Name -->
+          <div class="col-md-4">
+
+            <label
+              for="designationName"
+              class="form-label"
+            >
+              Designation Name
+            </label>
+
+            <input
+              type="text"
+              id="designationName"
+              class="form-control"
+              formControlName="designationName"
+              placeholder="Enter designation name"
+            />
+
+          </div>
+
+
+          <!-- Department -->
+          <div class="col-md-4">
+
+            <label
+              for="departmentId"
+              class="form-label"
+            >
+              Department
+            </label>
+
+            <select
+              id="departmentId"
+              class="form-select"
+              formControlName="departmentId"
+            >
+
+              <option
+                [ngValue]="null"
+                disabled
+              >
+                Select Department
+              </option>
+
+
+              @for (department of departments; track department.departmentId) {
+
+                <option
+                  [ngValue]="department.departmentId"
+                >
+                  {{ department.departmentName }}
+                </option>
+
+              }
+
+            </select>
+
+          </div>
+
+
+          <!-- Buttons -->
+          <div class="col-md-4">
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+            >
+              {{ save ? 'Save' : 'Update' }}
+            </button>
+
+
+            @if (!save) {
+
+              <button
+                type="button"
+                class="btn btn-secondary ms-2"
+                (click)="resetForm()"
+              >
+                Cancel
+              </button>
+
+            }
+
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+
+
+    <!-- Designation List -->
+    <div class="card-body">
+
+      <div class="table-responsive">
+
+        <table class="table table-bordered table-hover">
+
+          <thead>
+
+          <tr>
+
+            <th>#</th>
+
+            <th>
+              Designation Name
+            </th>
+
+            <th>
+              Department
+            </th>
+
+            <th>
+              Actions
+            </th>
+
+          </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            @for (
+              designation of designations;
+              track designation.designationId
+              ) {
+
+              <tr>
+
+                <td>
+                  {{designation.designationId}}
+                </td>
+
+
+                <td>
+                  {{ designation.designationName }}
+                </td>
+
+
+                <td>
+                  {{ getDepartmentName(designation.departmentId) }}
+                </td>
+
+
+                <td>
+
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-warning me-2"
+                    (click)="editDesignation(designation)"
+                  >
+                    Edit
+                  </button>
+
+
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-danger"
+                    (click)="deleteDesignation(designation.designationId)"
+                  >
+                    Delete
+                  </button>
+
+                </td>
+
+              </tr>
+
+            }
+
+
+            @if (designations.length === 0) {
+
+              <tr>
+
+                <td
+                  colspan="4"
+                  class="text-center text-muted"
+                >
+                  No designations found
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

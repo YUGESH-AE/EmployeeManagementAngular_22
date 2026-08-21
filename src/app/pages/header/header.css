@@ -1,0 +1,290 @@
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.dashboard-container {
+  display: flex;
+
+  width: 100%;
+  height: 100vh;
+
+  overflow: hidden;
+
+  background-color: #f8f9fa;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+  width: 250px;
+  min-width: 250px;
+
+  height: 100vh;
+
+  background-color: #212529;
+
+  color: white;
+
+  overflow: hidden;
+
+  transition:
+    width 0.3s ease,
+    min-width 0.3s ease;
+}
+
+
+/* COLLAPSED SIDEBAR */
+
+.sidebar.collapsed {
+  width: 70px;
+  min-width: 70px;
+}
+
+
+/* =========================================
+   SIDEBAR HEADER
+========================================= */
+
+.sidebar-header {
+  height: 60px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: #0d6efd;
+
+  color: white;
+
+  font-size: 20px;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+.admin-text {
+  letter-spacing: 1px;
+}
+
+
+.admin-icon {
+  font-size: 20px;
+}
+
+
+/* =========================================
+   SIDEBAR MENU
+========================================= */
+
+.sidebar-menu {
+  padding-top: 10px;
+}
+
+
+/* =========================================
+   MENU ITEM
+========================================= */
+
+.menu-item {
+  height: 50px;
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 0 20px;
+
+  color: #adb5bd;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+
+/* ICON */
+
+.menu-item i {
+  width: 30px;
+
+  min-width: 30px;
+
+  text-align: center;
+
+  font-size: 16px;
+
+  margin-right: 15px;
+}
+
+
+/* TEXT */
+
+.menu-item span {
+  font-size: 15px;
+}
+
+
+/* HOVER */
+
+.menu-item:hover {
+  background-color: #343a40;
+
+  color: white;
+}
+
+
+/* ACTIVE */
+
+.menu-item.active {
+  background-color: #0d6efd;
+
+  color: white;
+}
+
+
+/* LOGOUT */
+
+.menu-item.logout {
+  margin-top: 20px;
+}
+
+
+/* =========================================
+   COLLAPSED MENU
+========================================= */
+
+.sidebar.collapsed .menu-item {
+  justify-content: center;
+
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+.sidebar.collapsed .menu-item i {
+  margin-right: 0;
+}
+
+
+/* =========================================
+   MAIN AREA
+========================================= */
+
+.main-area {
+  flex: 1;
+
+  min-width: 0;
+
+  height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+
+/* =========================================
+   TOP BAR
+========================================= */
+
+.topbar {
+  height: 60px;
+
+  min-height: 60px;
+
+  display: flex;
+
+  align-items: center;
+
+  background-color: white;
+
+  border-bottom: 1px solid #dee2e6;
+
+  padding: 0 20px;
+}
+
+
+/* =========================================
+   TOGGLE BUTTON
+========================================= */
+
+.toggle-button {
+  width: 42px;
+
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  background-color: transparent;
+
+  color: #212529;
+
+  font-size: 28px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  border-radius: 5px;
+
+  margin-right: 15px;
+
+  padding: 0;
+}
+
+
+.toggle-button:hover {
+  background-color: #f1f3f5;
+}
+
+
+.toggle-button:focus {
+  outline: none;
+}
+
+
+/* =========================================
+   TOPBAR TITLE
+========================================= */
+
+.topbar h4 {
+  margin: 0;
+
+  font-size: 20px;
+
+  font-weight: 600;
+
+  color: #212529;
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.content {
+  flex: 1;
+
+  min-height: 0;
+
+  padding: 25px;
+
+  overflow-y: auto;
+
+  background-color: #f8f9fa;
+}

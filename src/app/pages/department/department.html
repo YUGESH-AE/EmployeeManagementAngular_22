@@ -1,0 +1,189 @@
+<div class="container-fluid department-page">
+
+  <div class="card department-card shadow">
+
+    <!-- Header -->
+    <div class="card-header department-header">
+      Department Management
+    </div>
+
+    <!-- Form -->
+    <div class="card-body">
+
+      <form [formGroup]="departmentForm" (ngSubmit)="upsertDepartment()">
+
+        <div class="row align-items-end g-3">
+
+          <!-- Department Name -->
+          <div class="col-md-4">
+
+            <label for="departmentName" class="form-label">
+              Department Name
+            </label>
+
+            <input
+              type="text"
+              id="departmentName"
+              class="form-control"
+              placeholder="Enter department name"
+              formControlName="departmentName"
+            >
+
+          </div>
+
+
+          <!-- Is Active -->
+          <div class="col-md-2">
+
+            <label class="form-label">
+              Is Active
+            </label>
+
+            <div class="form-check">
+
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="isActive"
+                formControlName="isActive"
+              >
+
+              <label
+                class="form-check-label"
+                for="isActive">
+                Active
+              </label>
+
+            </div>
+
+          </div>
+
+
+          <!-- Buttons -->
+          <div class="col-md-4">
+
+            <button
+              type="submit"
+              class="btn btn-success">
+              {{save ? 'Save' : 'Update'}}
+            </button>
+
+          </div>
+
+
+            @if (!save){
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="resetForm()">
+              Cancel
+            </button>
+            }
+
+
+        </div>
+
+      </form>
+
+
+      <!-- Table -->
+      <div class="table-responsive mt-4">
+
+        <table class="table table-bordered table-hover department-table">
+
+          <thead class="table-dark">
+
+          <tr>
+
+            <th class="text-center">#</th>
+
+            <th>
+              Department Name
+            </th>
+
+            <th class="text-center">
+              Is Active
+            </th>
+
+            <th class="text-center">
+              Actions
+            </th>
+
+          </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            @for (department of departments; track department.departmentId) {
+
+              <tr>
+
+                <td class="text-center">
+                  {{department.departmentId}}
+                </td>
+
+                <td>
+                  {{ department.departmentName }}
+                </td>
+
+                <td class="text-center">
+
+                  @if (department.isActive) {
+                    Yes
+                  } @else {
+                    No
+                  }
+
+                </td>
+
+                <td class="text-center">
+
+                  <button
+                    type="button"
+                    class="btn btn-warning btn-sm me-2"
+                    (click)="editDepartment(department)">
+                    Edit
+                  </button>
+
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-sm"
+                    (click)="deleteDepartment(department.departmentId)">
+                    Delete
+                  </button>
+
+                </td>
+
+              </tr>
+
+            }
+
+            @if (departments.length === 0) {
+
+              <tr>
+
+                <td
+                  colspan="4"
+                  class="text-center text-muted py-3">
+
+                  No departments found.
+
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
