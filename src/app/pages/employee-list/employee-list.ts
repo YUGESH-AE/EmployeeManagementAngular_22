@@ -56,8 +56,9 @@ export class EmployeeList implements OnInit{
   }
 
   editEmployee(employee:EmployeeModel):void{
-
-    this.router.navigateByUrl("/new-employee",{state:employee});
+    this.router.navigate(['/new-employee', employee.employeeId], {
+      state: { employee }
+    });
   }
 
   loadDepartment():void{

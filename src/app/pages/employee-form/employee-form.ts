@@ -4,7 +4,7 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {EmployeeService} from '../../service/employee-service';
 import {DepartmentService} from '../../service/department-service';
 import {DesignationService} from '../../service/designation-service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {DepartmentModel} from '../../models/Department';
 import {DesignationModel} from '../../models/DesignationModel';
 
@@ -24,6 +24,7 @@ export class EmployeeForm implements OnInit{
   designations:DesignationModel[]=[];
 
   employeeForm=new FormGroup({
+    employeeId:new FormControl<number | null>(null),
     name:new FormControl(),
     contactNo:new FormControl(),
     email:new FormControl(),
@@ -43,42 +44,75 @@ export class EmployeeForm implements OnInit{
   departmentService=inject(DepartmentService);
   designationService=inject(DesignationService);
   chDef=inject(ChangeDetectorRef);
-  route=inject(Router);
+  router=inject(Router);
+  activatedRoute=inject(ActivatedRoute);
   save:boolean=true;
   employeeId: number | undefined;
 
   resetForm(){
     this.employeeForm.reset();
+    this.save=true;
+    this.employeeId=undefined;
     this.chDef.detectChanges();
   }
 
   ngOnInit(): void {
     this.loadDepartments();
     this.loadDesignations();
+    this.loadEmployeeForEdit();
+  }
 
-    const employee:EmployeeModel=
-      history.state?.employee as EmployeeModel;
+  private loadEmployeeForEdit(): void {
+    const idParam = this.activatedRoute.snapshot.paramMap.get('id');
+    const fromState = history.state?.employee as EmployeeModel | undefined;
 
-    if(employee){
-      this.save=false;
-      this.employeeId=employee.employeeId;
-
-      this.employeeForm.patchValue({
-
-        name: employee.name,
-        contactNo: employee.contactNo,
-        email: employee.email,
-        city: employee.city,
-        state: employee.state,
-        pinCode: employee.pinCode,
-        altContactNo: employee.altContactNo,
-        address: employee.address,
-        departmentId: employee.departmentId,
-        designationId: employee.designationId,
-        role: employee.role,
-      });
-
+    if (fromState?.employeeId) {
+      this.applyEmployee(fromState);
+      return;
     }
+
+    if (!idParam) {
+      return;
+    }
+
+    const employeeId = Number(idParam);
+    this.employeeService.getEmployee().subscribe({
+      next: (result: EmployeeModel[]) => {
+        const employee = result.find(item => item.employeeId === employeeId);
+        if (employee) {
+          this.applyEmployee(employee);
+        }
+      },
+      error: (err: unknown) => {
+        console.error(err);
+      }
+    });
+  }
+
+  private applyEmployee(employee: EmployeeModel): void {
+    this.save = false;
+    this.employeeId = employee.employeeId;
+
+    const departmentId =
+      employee.departmentId ??
+      this.designations.find(item => item.designationId === employee.designationId)?.departmentId ??
+      null;
+
+    this.employeeForm.patchValue({
+      employeeId: employee.employeeId ?? null,
+      name: employee.name,
+      contactNo: employee.contactNo,
+      email: employee.email,
+      city: employee.city,
+      state: employee.state,
+      pinCode: employee.pinCode,
+      altContactNo: employee.altContactNo,
+      address: employee.address,
+      departmentId,
+      designationId: employee.designationId,
+      role: employee.role,
+    });
+    this.chDef.detectChanges();
   }
 
   upsertEmployee():void{
@@ -108,6 +142,17 @@ export class EmployeeForm implements OnInit{
     this.designationService.getDesignation().subscribe({
       next:(result:any)=>{
         this.designations=result;
+        if (this.employeeId) {
+          const current = this.employeeForm.getRawValue();
+          if (current.designationId && !current.departmentId) {
+            const departmentId = this.designations.find(
+              item => item.designationId === current.designationId
+            )?.departmentId;
+            if (departmentId != null) {
+              this.employeeForm.patchValue({ departmentId });
+            }
+          }
+        }
         this.chDef.detectChanges();
       },
       error:(err:any)=>{
@@ -127,7 +172,7 @@ export class EmployeeForm implements OnInit{
   }
 
   saveEmployee():void{
-    const employee=this.employeeForm.getRawValue();
+    const {employeeId, ...employee}=this.employeeForm.getRawValue();
     this.employeeService.postEmployee(employee).subscribe({
       next:(result:any)=>{
         alert(result.message);
@@ -140,11 +185,14 @@ export class EmployeeForm implements OnInit{
     })
   }
   updateEmployee():void{
-    const employee=this.employeeForm.getRawValue();
+    const employee={
+      ...this.employeeForm.getRawValue(),
+      employeeId: this.employeeId
+    } as Partial<EmployeeModel>;
     this.employeeService.putEmployee(employee).subscribe({
       next:(result:any)=>{
-        alert(result.message);
-        this.resetForm();
+        alert(result.message ?? 'Employee updated');
+        this.router.navigateByUrl('/employees');
         this.chDef.detectChanges();
       },
       error:(err:any)=>{
