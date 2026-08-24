@@ -55,6 +55,11 @@ body {
 [data-theme='dark'] .table tbody td { border-color: #2c3b52; }
 [data-theme='dark'] .table-hover tbody tr:hover > * { --bs-table-accent-bg: #1e293b; }
 [data-theme='dark'] .form-label { color: #cbd5e1; }
+[data-theme='dark'] .management-card { color: #e5edf8; }
+[data-theme='dark'] .management-card .form-label { color: #e5edf8; }
+[data-theme='dark'] .management-card .form-control::placeholder { color: #94a3b8; opacity: 1; }
+[data-theme='dark'] .management-card .btn-outline-secondary { color: #cbd5e1; border-color: #64748b; }
+[data-theme='dark'] .management-card .btn-outline-secondary:hover { color: #fff; background: #475569; border-color: #475569; }
 
 @media (max-width: 767.98px) {
   .management-page { padding: 1rem; }
