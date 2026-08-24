@@ -2,6 +2,7 @@ import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {apiUrl} from '../../config/api-url';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class Login {
   router=inject(Router);
 
   onSubmit(){
-    this.http.post('/api/employees/login', this.login.value).subscribe({
+    this.http.post(apiUrl('/api/employees/login'), this.login.value).subscribe({
       next:(result:any)=>{
         this.router.navigateByUrl("/dashboard");
         localStorage.setItem("empLoginUser",JSON.stringify(result.data));
