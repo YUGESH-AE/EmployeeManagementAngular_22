@@ -288,3 +288,10 @@
 
   background-color: #f8f9fa;
 }
+
+/* Product styling overrides */
+.dashboard-container, .content { background-color: #f4f7fb; }
+.sidebar { background-color: #172033; }.sidebar-header, .menu-item.active { background: linear-gradient(120deg, #2563eb, #4f46e5); }.sidebar-menu { padding: 14px 10px; }.menu-item { margin: 3px 0; padding: 0 15px; border-radius: 8px; color: #aab7ca; }.menu-item:hover { background-color: rgba(255,255,255,.08); }.topbar { border-bottom-color: #e2e8f0; }.topbar h4 { color: #172033; font-size: 1rem; font-weight: 700; }.topbar-eyebrow { margin: 0 0 .15rem; color: #64748b; font-size: .65rem; font-weight: 700; letter-spacing: .09em; }
+
+.theme-toggle { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; color: #475569; border: 1px solid #e2e8f0; border-radius: .6rem; background: #fff; transition: .2s ease; }.theme-toggle:hover { color: #2563eb; background: #eff6ff; }
+:host-context([data-theme='dark']) .dashboard-container, :host-context([data-theme='dark']) .content { background: #0b1220; }:host-context([data-theme='dark']) .topbar { background: #172033; border-color: #2c3b52; }:host-context([data-theme='dark']) .topbar h4 { color: #e5edf8; }:host-context([data-theme='dark']) .topbar-eyebrow { color: #94a3b8; }:host-context([data-theme='dark']) .theme-toggle { color: #fbbf24; border-color: #2c3b52; background: #1e293b; }:host-context([data-theme='dark']) .theme-toggle:hover { background: #26364d; }

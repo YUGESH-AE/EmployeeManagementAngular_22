@@ -1,5 +1,13 @@
 <div class="login-page">
 
+  <button
+    type="button"
+    class="login-theme-toggle"
+    (click)="theme.toggleTheme()"
+    [attr.aria-label]="theme.isDarkTheme() ? 'Switch to light theme' : 'Switch to dark theme'">
+    <i class="fas" [class.fa-sun]="theme.isDarkTheme()" [class.fa-moon]="!theme.isDarkTheme()"></i>
+  </button>
+
   <div class="login-card">
 
     <!-- ================= HEADER ================= -->

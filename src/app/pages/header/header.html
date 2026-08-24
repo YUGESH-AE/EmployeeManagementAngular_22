@@ -12,7 +12,7 @@
 
       @if (!isSidebarCollapsed()) {
         <span class="admin-text">
-          ADMIN
+          PeopleOps
         </span>
       }
 
@@ -163,9 +163,18 @@
       </button>
 
 
-      <h4>
-        Admin Dashboard
-      </h4>
+      <div>
+        <p class="topbar-eyebrow">EMPLOYEE MANAGEMENT</p>
+        <h4>PeopleOps workspace</h4>
+      </div>
+      <button
+        type="button"
+        class="theme-toggle ms-auto"
+        (click)="theme.toggleTheme()"
+        [attr.aria-label]="theme.isDarkTheme() ? 'Switch to light theme' : 'Switch to dark theme'"
+        [title]="theme.isDarkTheme() ? 'Light theme' : 'Dark theme'">
+        <i class="fas" [class.fa-sun]="theme.isDarkTheme()" [class.fa-moon]="!theme.isDarkTheme()"></i>
+      </button>
 
     </header>
 

@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
 import {EmployeeModel} from '../../models/EmployeeModel';
 import {EmployeeService} from '../../service/employee-service';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {DepartmentService} from '../../service/department-service';
 import {DesignationService} from '../../service/designation-service';
 import {DepartmentModel} from '../../models/Department';
@@ -9,7 +9,7 @@ import {DesignationModel} from '../../models/DesignationModel';
 
 @Component({
   selector: 'app-employee-list',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './employee-list.html',
   styleUrl: './employee-list.css',
 })

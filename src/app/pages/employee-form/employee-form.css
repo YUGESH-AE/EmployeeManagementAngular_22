@@ -185,3 +185,9 @@
   }
 
 }
+
+/* Align this legacy form with the shared Bootstrap management pages. */
+.employee-card { border: 1px solid #e2e8f0; border-radius: 1rem; }
+.employee-card .card-body { padding: 1.5rem; }
+.employee-card .form-control, .employee-card .form-select { height: auto; min-height: 2.7rem; border-radius: .6rem; }
+.employee-card textarea.form-control { min-height: 5.5rem; }

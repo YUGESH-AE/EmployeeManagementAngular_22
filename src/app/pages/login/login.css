@@ -9,10 +9,12 @@
   justify-content: center;
   align-items: center;
 
-  background: #f5f6f8;
+  background: radial-gradient(circle at top left, #dbeafe, transparent 35%), #f4f7fb;
 
   padding: 30px;
 }
+
+.login-theme-toggle { position: fixed; top: 1.25rem; right: 1.25rem; display: grid; place-items: center; width: 2.7rem; height: 2.7rem; color: #2563eb; border: 1px solid #dbeafe; border-radius: .7rem; background: rgba(255,255,255,.84); box-shadow: 0 8px 20px rgba(15,23,42,.08); }
 
 
 /* =========================================
@@ -25,7 +27,8 @@
 
   background: #ffffff;
 
-  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
 
   overflow: hidden;
 
@@ -38,7 +41,7 @@
 ========================================= */
 
 .login-header {
-  background: #0d6efd;
+  background: linear-gradient(120deg, #2563eb, #4f46e5);
 
   color: white;
 
@@ -151,7 +154,7 @@
 
   border: 1px solid #ced4da;
 
-  border-radius: 5px;
+  border-radius: 8px;
 
   font-size: 15px;
 
@@ -234,7 +237,7 @@
 
   border-radius: 5px;
 
-  background: #0d6efd;
+  background: linear-gradient(120deg, #2563eb, #4f46e5);
 
   color: white;
 
@@ -314,7 +317,7 @@
 
   border: 1px solid #ced4da;
 
-  border-radius: 5px;
+  border-radius: 8px;
 
   color: #495057;
 
@@ -387,3 +390,5 @@
   }
 
 }
+
+:host-context([data-theme='dark']) .login-page { background: radial-gradient(circle at top left, #1e3a8a, transparent 35%), #0b1220; }:host-context([data-theme='dark']) .login-card { background: #172033; border-color: #2c3b52; }:host-context([data-theme='dark']) .login-body, :host-context([data-theme='dark']) .login-footer { color: #e5edf8; }:host-context([data-theme='dark']) .form-group label { color: #cbd5e1; }:host-context([data-theme='dark']) .login-footer { border-color: #2c3b52; background: #1e293b; color: #94a3b8; }:host-context([data-theme='dark']) .social-button { color: #cbd5e1; border-color: #2c3b52; background: #1e293b; }:host-context([data-theme='dark']) .social-button:hover { background: #26364d; }:host-context([data-theme='dark']) .login-theme-toggle { color: #fbbf24; border-color: #2c3b52; background: #172033; }

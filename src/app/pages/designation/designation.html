@@ -1,10 +1,13 @@
-<div class="container-fluid designation-page">
+<div class="management-page">
 
-  <div class="card designation-card shadow">
+  <div class="card management-card designation-card">
 
     <!-- Header -->
-    <div class="card-header designation-header">
-      Designation Management
+    <div class="card-header">
+      <div>
+        <h1 class="page-title"><i class="fas fa-user-tie me-2"></i>Designation management</h1>
+        <p class="page-subtitle">Define roles for your departments.</p>
+      </div>
     </div>
 
 
@@ -83,9 +86,10 @@
 
             <button
               type="submit"
-              class="btn btn-primary"
+              class="btn btn-primary px-4"
             >
-              {{ save ? 'Save' : 'Update' }}
+              <i class="fas" [class.fa-plus]="save" [class.fa-pen]="!save"></i>
+              {{ save ? ' Save designation' : ' Update designation' }}
             </button>
 
 
@@ -93,7 +97,7 @@
 
               <button
                 type="button"
-                class="btn btn-secondary ms-2"
+              class="btn btn-outline-secondary ms-2"
                 (click)="resetForm()"
               >
                 Cancel
@@ -168,19 +172,19 @@
 
                   <button
                     type="button"
-                    class="btn btn-sm btn-warning me-2"
+                    class="btn btn-sm btn-outline-primary me-2"
                     (click)="editDesignation(designation)"
                   >
-                    Edit
+                    <i class="fas fa-pen me-1"></i>Edit
                   </button>
 
 
                   <button
                     type="button"
-                    class="btn btn-sm btn-danger"
+                    class="btn btn-sm btn-outline-danger"
                     (click)="deleteDesignation(designation.designationId)"
                   >
-                    Delete
+                    <i class="fas fa-trash me-1"></i>Delete
                   </button>
 
                 </td>
@@ -196,7 +200,7 @@
 
                 <td
                   colspan="4"
-                  class="text-center text-muted"
+                  class="text-center empty-state"
                 >
                   No designations found
                 </td>

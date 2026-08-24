@@ -1,1 +1,16 @@
-<p>dashboard works!</p>
+<section class="dashboard-page">
+  <div class="welcome-banner">
+    <div>
+      <p class="eyebrow">WORKSPACE OVERVIEW</p>
+      <h1>Welcome to your employee hub.</h1>
+      <p>Keep people, departments, and designations organized from one place.</p>
+    </div>
+    <a routerLink="/new-employee" class="btn btn-light px-4"><i class="fas fa-user-plus me-2"></i>Add employee</a>
+  </div>
+
+  <div class="row g-4 mt-1">
+    <div class="col-md-4"><a routerLink="/employees" class="dashboard-action-card"><span class="action-icon blue"><i class="fas fa-users"></i></span><div><h2>Employees</h2><p>View and update employee profiles.</p></div><i class="fas fa-arrow-right arrow"></i></a></div>
+    <div class="col-md-4"><a routerLink="/department" class="dashboard-action-card"><span class="action-icon violet"><i class="fas fa-building"></i></span><div><h2>Departments</h2><p>Set up and manage your teams.</p></div><i class="fas fa-arrow-right arrow"></i></a></div>
+    <div class="col-md-4"><a routerLink="/designation" class="dashboard-action-card"><span class="action-icon teal"><i class="fas fa-user-tie"></i></span><div><h2>Designations</h2><p>Create the roles your teams need.</p></div><i class="fas fa-arrow-right arrow"></i></a></div>
+  </div>
+</section>

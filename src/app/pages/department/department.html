@@ -1,10 +1,13 @@
-<div class="container-fluid department-page">
+<div class="management-page">
 
-  <div class="card department-card shadow">
+  <div class="card management-card department-card">
 
     <!-- Header -->
-    <div class="card-header department-header">
-      Department Management
+    <div class="card-header">
+      <div>
+        <h1 class="page-title"><i class="fas fa-building me-2"></i>Department management</h1>
+        <p class="page-subtitle">Organize the teams in your company.</p>
+      </div>
     </div>
 
     <!-- Form -->
@@ -64,8 +67,9 @@
 
             <button
               type="submit"
-              class="btn btn-success">
-              {{save ? 'Save' : 'Update'}}
+              class="btn btn-primary px-4">
+              <i class="fas" [class.fa-plus]="save" [class.fa-pen]="!save"></i>
+              {{save ? ' Save department' : ' Update department'}}
             </button>
 
           </div>
@@ -74,7 +78,7 @@
             @if (!save){
             <button
               type="button"
-              class="btn btn-secondary"
+              class="btn btn-outline-secondary ms-2"
               (click)="resetForm()">
               Cancel
             </button>
@@ -91,7 +95,7 @@
 
         <table class="table table-bordered table-hover department-table">
 
-          <thead class="table-dark">
+          <thead>
 
           <tr>
 
@@ -131,9 +135,9 @@
                 <td class="text-center">
 
                   @if (department.isActive) {
-                    Yes
+                    <span class="badge text-bg-success status-badge">Active</span>
                   } @else {
-                    No
+                    <span class="badge text-bg-secondary status-badge">Inactive</span>
                   }
 
                 </td>
@@ -142,16 +146,16 @@
 
                   <button
                     type="button"
-                    class="btn btn-warning btn-sm me-2"
+                    class="btn btn-outline-primary btn-sm me-2"
                     (click)="editDepartment(department)">
-                    Edit
+                    <i class="fas fa-pen me-1"></i>Edit
                   </button>
 
                   <button
                     type="button"
-                    class="btn btn-danger btn-sm"
+                    class="btn btn-outline-danger btn-sm"
                     (click)="deleteDepartment(department.departmentId)">
-                    Delete
+                    <i class="fas fa-trash me-1"></i>Delete
                   </button>
 
                 </td>
@@ -166,7 +170,7 @@
 
                 <td
                   colspan="4"
-                  class="text-center text-muted py-3">
+                  class="text-center empty-state">
 
                   No departments found.
 

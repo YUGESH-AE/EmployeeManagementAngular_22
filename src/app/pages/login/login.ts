@@ -3,6 +3,7 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {apiUrl} from '../../config/api-url';
+import {ThemeService} from '../../service/theme.service';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class Login {
 
   http=inject(HttpClient);
   router=inject(Router);
+  theme=inject(ThemeService);
 
   onSubmit(){
     this.http.post(apiUrl('/api/employees/login'), this.login.value).subscribe({
